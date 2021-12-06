@@ -4,8 +4,9 @@ import WeatherApp from "./Components/Weather/WeatherApp.vue"
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        { path: "/" , redirect : "/crypto"},
         { name: "crypto", path: "/crypto", component: CryptoList},
-        { name: "weather", path: "/weather", component: WeatherApp}
+        { name: "weather", path: "/weather", component: WeatherApp},
     ],
     linkActiveClass : "active"
 })

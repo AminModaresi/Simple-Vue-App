@@ -11,6 +11,7 @@
       :name="crypto.name"
       :symbol="crypto.symbol"
       :pirce="crypto.current_price"
+      :change="crypto.price_change_percentage_1h_in_currency"
     ></crypto-item>
   </ul>
   <div class="container" v-if="!notOk">
@@ -42,7 +43,7 @@ export default {
   methods: {
     getCrypt() {
       fetch(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h"
       )
         .then((response) => {
           if (response.ok) {
@@ -59,7 +60,7 @@ export default {
     },
   },
   mounted() {
-    this.intervalData = setInterval(this.getCrypt, 20000);
+    this.intervalData = setInterval(this.getCrypt, 10000);
   },
   created() {
     this.getCrypt();
@@ -85,8 +86,5 @@ export default {
   padding: 00.5rem;
   font-size: 1.5rem;
   width: 100%;
-}
-li:hover {
-  background-color: #f1f1f1f1;
 }
 </style>
